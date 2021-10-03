@@ -1,0 +1,135 @@
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  max-width: 700px;
+  width: 100%;
+  height: 100%;
+  margin: 20vh auto 0 auto;
+  padding: 0 5px 0 5px;
+}
+
+@keyframes load-fade-in {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  animation-name: load-fade-in;
+  animation-duration: 0.5s;
+}
+
+/* Collapsible Card */
+
+.collapsible-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+  transition: height ease 0.3s;
+  background-color: #27398e;
+  margin-bottom: 5px;
+}
+
+.collapsible-card.show {
+  height: 200px;
+}
+
+.card-row {
+  display: flex;
+  width: 100%;
+  height: 100px;
+}
+
+.card-row.light > :not(:first-child){
+  background-color: #2f4299;
+}
+
+
+.card-row .row-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  font-size: 12px;
+}
+
+.card-row .row-body {
+  display: flex;
+  align-items: center;
+}
+
+.row-body-spacer {
+  display: flex;
+  flex-grow: 1;
+}
+
+.row-body .general-info {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0 0 25px;
+}
+
+.row-body .general-info .day-temperature {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.row-body .general-info .nigth-temperature {
+  font-size: 20px;
+  color: #c7cef5;
+}
+
+.row-body .general-info .humidity {
+  font-size: 12px;
+}
+
+.row-misc {
+  display: flex;
+  height: 100%;
+  padding-right: 10px;
+  align-items: center;
+}
+
+.collapse-icon {
+  transition: transform ease 0.3s;
+}
+
+.collapse-icon.up{
+  transform: rotateX(180deg)
+}
+
+/* Card bottom part styling */
+
+.temperature-by-hour {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.temperature-by-hour .temperature {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.temperature-by-hour .hour {
+  font-size: 12px;
+  color: #c5cae9;
+}
+
+.temperature-spacer {
+  display: flex;
+  flex-grow: 1;
+}
+
+.temperature-spacer-end {
+  display: flex;
+  flex-grow: 2;
+}
