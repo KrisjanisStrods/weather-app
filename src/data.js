@@ -50,16 +50,19 @@ function sortDataByDays(list = []) {
     }
   }
 
-  return sortedList;
+  // Return only 5 days
+  return sortedList.slice(0, 5);
 }
 
 function getAverage(tempList) {
-  return Math.round(tempList.reduce((a, b) => a + b, 0) / tempList.length)
+  if (tempList.length > 0) {
+    return Math.round(tempList.reduce((a, b) => a + b, 0) / tempList.length)
+  }
 }
 
 /**
 * @param {Array} sortedList Array of object with keys: day, recurring
-* @returns {Array} Array of object with keys: day, recurring, averageDayTemp, averageNightTemp, averageHumidity
+* @returns {Array} Array of object with keys: day, recurring, avgDayTemp, avgNightTemp, avgHumidity
 */
 function parseData(sortedList) {
   return sortedList.map(entry => {
@@ -77,9 +80,9 @@ function parseData(sortedList) {
 
     return {
       ...entry,
-      averageDayTemp: dayTemperatures.length > 0 ?  getAverage(dayTemperatures) : 'N/A',
-      averageNightTemp: nightTemperatures.length > 0 ?  getAverage(nightTemperatures) : 'N/A',
-      averageHumidity: humidity.length > 0 ?  getAverage(humidity) : 'N/A',
+      avgDayTemp: getAverage(dayTemperatures),
+      avgNightTemp: getAverage(nightTemperatures),
+      avgHumidity: getAverage(humidity),
       recurring: entry.recurring.filter(item => DISPLAYED_HOURS.includes(item.hour))
     }
   })
@@ -107,13 +110,12 @@ export async function getLocationData(cb) {
   // Get location based data
   window
     .fetch(
-      `http://api.openweathermap.org/data/2.5/forecast?lat=${location.lat}&lon=${location.lon}&appid=${REACT_APP_API_KEY}&units=metric`,
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${location.lat}&lon=${location.lon}&appid=${REACT_APP_API_KEY}&units=metric`,
     )
     .then((res) => res.json())
     .then(data => {
       const sortedData = sortDataByDays(data.list);
       const parsedData = parseData(sortedData);
-      console.log(' data.list', sortedData)
       cb(parsedData)
     })
 }

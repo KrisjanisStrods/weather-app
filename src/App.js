@@ -4,14 +4,14 @@ import { getLocationData } from './data';
 import './App.scss';
 
 function DataLayer({ data }) {
-  console.log(data)
   return data.length > 0 
-    ? data.map(({ day, averageDayTemp, averageNightTemp, averageHumidity, recurring }) => (
+    ? data.map(({ day, avgDayTemp, avgNightTemp, avgHumidity, recurring }) => (
       <Collapsible
+        key={day}
         day={day}
-        dayTemp={averageDayTemp}
-        nightTemp={averageNightTemp}
-        avgHumidity={averageHumidity}
+        dayTemp={avgDayTemp}
+        nightTemp={avgNightTemp}
+        avgHumidity={avgHumidity}
         tempByHour={recurring}
       />
     ))

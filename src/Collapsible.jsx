@@ -24,6 +24,11 @@ function Collapsible ({
   tempByHour = [],
 }) {
   const [isShown, setIsShown] = useState(false)
+
+  const adjustedDayTemp = dayTemp ? `${dayTemp}°C` : '-';
+  const adjustedNighTemp = dayTemp ? `${nightTemp}°C` : '-';
+  const adjustedAvgHumidity = avgHumidity ? `${avgHumidity}%` : '-';
+
   return (
     <div className={isShown ? "collapsible-card show" : "collapsible-card"}>
       <div className="card-row light" onClick={() => setIsShown(prev => !prev)}>
@@ -31,10 +36,10 @@ function Collapsible ({
         <div className="row-body">
           <div className="general-info">
             <div>
-              <span className="day-temperature">{dayTemp}°C</span>
-              <span className="night-temperature"> / {nightTemp}°C</span>
+              <span className="day-temperature">{adjustedDayTemp}</span>
+              <span className="night-temperature"> / {adjustedNighTemp}</span>
             </div>
-            <div className="humidity" >Avg. Humidity: {avgHumidity}%</div>
+            <div className="humidity" >Avg. Humidity: {adjustedAvgHumidity}</div>
           </div>
         </div>
         <div className="row-body-spacer"/>
@@ -44,7 +49,7 @@ function Collapsible ({
       </div>
       <div className="card-row">
         <div className="row-title" />
-          { tempByHour.map(({ temp, hour }) => <HourlyTemp temp={temp} hour={hour} />) }
+          { tempByHour.map(({ temp, hour }) => <HourlyTemp key={day+hour} temp={temp} hour={hour} /> ) }
         <div className="temperature-spacer-end"/>
       </div>
     </div>
