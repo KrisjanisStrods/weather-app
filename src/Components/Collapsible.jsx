@@ -11,7 +11,7 @@ function HourlyTemp({
         <div>{temp}°C</div>
         <div className="hour">{adjustedHour}</div>
       </div>
-      <div className="temperature-spacer"/>  
+      <div className="spacer"/>  
     </>
   )
 }
@@ -32,26 +32,23 @@ function Collapsible ({
 
   return (
     <div className={isShown ? "collapsible-card show" : "collapsible-card"}>
-      <div className="card-row light" onClick={() => setIsShown(prev => !prev)}>
-        <div className="row-title">{day}</div>
-        <div className="row-body">
-          <div className="general-info">
-            <div>
-              <span className="day-temperature">{adjustedDayTemp}</span>
-              <span className="night-temperature"> / {adjustedNighTemp}</span>
-            </div>
-            <div className="humidity" >Avg. Humidity: {adjustedAvgHumidity}</div>
+      <div className="row light" onClick={() => setIsShown(prev => !prev)}>
+        <div className="title">{day}</div>
+        <div className="general-info">
+          <div>
+            <span className="day-temperature">{adjustedDayTemp}</span>
+            <span className="night-temperature"> / {adjustedNighTemp}</span>
           </div>
+          <div className="humidity" >Avg. Humidity: {adjustedAvgHumidity}</div>
         </div>
-        <div className="row-body-spacer"/>
-        <div className="row-misc">
-          <span className={isShown ? "collapse-icon up" : "collapse-icon"}>▼</span>
+        <div className="spacer"/>
+        <div className="misc">
+          <span className={isShown ? "icon up" : "icon"}>▼</span>
         </div>
       </div>
-      <div className="card-row">
-        <div className="row-title" />
-          { tempByHour.map(({ temp, hour }) => <HourlyTemp key={day+hour} temp={temp} hour={hour} /> ) }
-        <div className="temperature-spacer-end"/>
+      <div className="row">
+        <div className="title" />
+        { tempByHour.map(({ temp, hour }) => <HourlyTemp key={day+hour} temp={temp} hour={hour} /> ) }
       </div>
     </div>
   )
