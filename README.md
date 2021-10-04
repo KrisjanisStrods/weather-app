@@ -1,7 +1,7 @@
 
 # Weather App
 
-A responsive Web app for weather forecast info. All the weather forecast data is provided by the o OpenWeatherMap API.
+A responsive Web App for weather forecast info. All the weather forecast data is provided by the OpenWeatherMap API.
 
 ![alt text](https://fv2-4.failiem.lv/thumb_show.php?i=k6ry3u8ze&view)
 
