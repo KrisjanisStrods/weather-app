@@ -25,6 +25,7 @@ function Collapsible ({
 }) {
   const [isShown, setIsShown] = useState(false)
 
+  // In case of falsey value, replace parameter with -
   const adjustedDayTemp = dayTemp ? `${dayTemp}°C` : '-';
   const adjustedNighTemp = dayTemp ? `${nightTemp}°C` : '-';
   const adjustedAvgHumidity = avgHumidity ? `${avgHumidity}%` : '-';
